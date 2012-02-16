@@ -1,0 +1,325 @@
+Arena 1 West Browser 0 tcpsrc 1
+Arena 1 West Browser 0 udpsrc 2
+Arena 1 West Browser 1 tcpsrc 3
+Arena 1 West Browser 1 udpsrc 4
+Arena 1 West Browser 2 tcpsrc 5
+Arena 1 West Browser 2 udpsrc 6
+Arena 1 West Browser 3 tcpsrc 7
+Arena 1 West Browser 3 udpsrc 8
+Arena 1 West Browser 4 tcpsrc 9
+Arena 1 West Browser 4 udpsrc 10
+Arena 1 West Browser 5 tcpsrc 11
+Arena 1 West Browser 5 udpsrc 12
+Arena 1 West Browser 6 tcpsrc 13
+Arena 1 West Browser 6 udpsrc 14
+Arena 1 West Browser 7 tcpsrc 15
+Arena 1 West Browser 7 udpsrc 16
+Arena 1 West Browser 8 tcpsrc 17
+Arena 1 West Browser 8 udpsrc 18
+Arena 1 West Browser 9 tcpsrc 19
+Arena 1 West Browser 9 udpsrc 20
+Arena 1 Elephant agent 21
+Arena 1 East Browser 0 tcpsrc 22
+Arena 1 East Browser 0 udpsrc 23
+Arena 1 East Browser 1 tcpsrc 24
+Arena 1 East Browser 1 udpsrc 25
+Arena 1 East Browser 2 tcpsrc 26
+Arena 1 East Browser 2 udpsrc 27
+Arena 1 East Browser 3 tcpsrc 28
+Arena 1 East Browser 3 udpsrc 29
+Arena 1 East Browser 4 tcpsrc 30
+Arena 1 East Browser 4 udpsrc 31
+Arena 1 East Browser 5 tcpsrc 32
+Arena 1 East Browser 5 udpsrc 33
+Arena 1 East Browser 6 tcpsrc 34
+Arena 1 East Browser 6 udpsrc 35
+Arena 1 East Browser 7 tcpsrc 36
+Arena 1 East Browser 7 udpsrc 37
+Arena 1 East Browser 8 tcpsrc 38
+Arena 1 East Browser 8 udpsrc 39
+Arena 1 East Browser 9 tcpsrc 40
+Arena 1 East Browser 9 udpsrc 41
+Arena 2 West Browser 0 tcpsrc 42
+Arena 2 West Browser 0 udpsrc 43
+Arena 2 West Browser 1 tcpsrc 44
+Arena 2 West Browser 1 udpsrc 45
+Arena 2 West Browser 2 tcpsrc 46
+Arena 2 West Browser 2 udpsrc 47
+Arena 2 West Browser 3 tcpsrc 48
+Arena 2 West Browser 3 udpsrc 49
+Arena 2 West Browser 4 tcpsrc 50
+Arena 2 West Browser 4 udpsrc 51
+Arena 2 West Browser 5 tcpsrc 52
+Arena 2 West Browser 5 udpsrc 53
+Arena 2 West Browser 6 tcpsrc 54
+Arena 2 West Browser 6 udpsrc 55
+Arena 2 West Browser 7 tcpsrc 56
+Arena 2 West Browser 7 udpsrc 57
+Arena 2 West Browser 8 tcpsrc 58
+Arena 2 West Browser 8 udpsrc 59
+Arena 2 West Browser 9 tcpsrc 60
+Arena 2 West Browser 9 udpsrc 61
+Arena 2 Elephant agent 62
+Arena 2 East Browser 0 tcpsrc 63
+Arena 2 East Browser 0 udpsrc 64
+Arena 2 East Browser 1 tcpsrc 65
+Arena 2 East Browser 1 udpsrc 66
+Arena 2 East Browser 2 tcpsrc 67
+Arena 2 East Browser 2 udpsrc 68
+Arena 2 East Browser 3 tcpsrc 69
+Arena 2 East Browser 3 udpsrc 70
+Arena 2 East Browser 4 tcpsrc 71
+Arena 2 East Browser 4 udpsrc 72
+Arena 2 East Browser 5 tcpsrc 73
+Arena 2 East Browser 5 udpsrc 74
+Arena 2 East Browser 6 tcpsrc 75
+Arena 2 East Browser 6 udpsrc 76
+Arena 2 East Browser 7 tcpsrc 77
+Arena 2 East Browser 7 udpsrc 78
+Arena 2 East Browser 8 tcpsrc 79
+Arena 2 East Browser 8 udpsrc 80
+Arena 2 East Browser 9 tcpsrc 81
+Arena 2 East Browser 9 udpsrc 82
+Arena 3 West Browser 0 tcpsrc 83
+Arena 3 West Browser 0 udpsrc 84
+Arena 3 West Browser 1 tcpsrc 85
+Arena 3 West Browser 1 udpsrc 86
+Arena 3 West Browser 2 tcpsrc 87
+Arena 3 West Browser 2 udpsrc 88
+Arena 3 West Browser 3 tcpsrc 89
+Arena 3 West Browser 3 udpsrc 90
+Arena 3 West Browser 4 tcpsrc 91
+Arena 3 West Browser 4 udpsrc 92
+Arena 3 West Browser 5 tcpsrc 93
+Arena 3 West Browser 5 udpsrc 94
+Arena 3 West Browser 6 tcpsrc 95
+Arena 3 West Browser 6 udpsrc 96
+Arena 3 West Browser 7 tcpsrc 97
+Arena 3 West Browser 7 udpsrc 98
+Arena 3 West Browser 8 tcpsrc 99
+Arena 3 West Browser 8 udpsrc 100
+Arena 3 West Browser 9 tcpsrc 101
+Arena 3 West Browser 9 udpsrc 102
+Arena 3 Elephant agent 103
+Arena 3 East Browser 0 tcpsrc 104
+Arena 3 East Browser 0 udpsrc 105
+Arena 3 East Browser 1 tcpsrc 106
+Arena 3 East Browser 1 udpsrc 107
+Arena 3 East Browser 2 tcpsrc 108
+Arena 3 East Browser 2 udpsrc 109
+Arena 3 East Browser 3 tcpsrc 110
+Arena 3 East Browser 3 udpsrc 111
+Arena 3 East Browser 4 tcpsrc 112
+Arena 3 East Browser 4 udpsrc 113
+Arena 3 East Browser 5 tcpsrc 114
+Arena 3 East Browser 5 udpsrc 115
+Arena 3 East Browser 6 tcpsrc 116
+Arena 3 East Browser 6 udpsrc 117
+Arena 3 East Browser 7 tcpsrc 118
+Arena 3 East Browser 7 udpsrc 119
+Arena 3 East Browser 8 tcpsrc 120
+Arena 3 East Browser 8 udpsrc 121
+Arena 3 East Browser 9 tcpsrc 122
+Arena 3 East Browser 9 udpsrc 123
+Beginning simulation (will run for 2000.0)...
+10 seconds
+20 seconds
+30 seconds
+40 seconds
+50 seconds
+60 seconds
+70 seconds
+80 seconds
+90 seconds
+100 seconds
+110 seconds
+120 seconds
+130 seconds
+140 seconds
+150 seconds
+160 seconds
+170 seconds
+180 seconds
+190 seconds
+200 seconds
+210 seconds
+220 seconds
+230 seconds
+240 seconds
+250 seconds
+260 seconds
+270 seconds
+280 seconds
+290 seconds
+300 seconds
+310 seconds
+320 seconds
+330 seconds
+340 seconds
+350 seconds
+360 seconds
+370 seconds
+380 seconds
+390 seconds
+400 seconds
+410 seconds
+420 seconds
+430 seconds
+440 seconds
+450 seconds
+460 seconds
+470 seconds
+480 seconds
+490 seconds
+500 seconds
+510 seconds
+520 seconds
+530 seconds
+540 seconds
+550 seconds
+560 seconds
+570 seconds
+580 seconds
+590 seconds
+600 seconds
+610 seconds
+620 seconds
+630 seconds
+640 seconds
+650 seconds
+660 seconds
+670 seconds
+680 seconds
+690 seconds
+700 seconds
+710 seconds
+720 seconds
+730 seconds
+740 seconds
+750 seconds
+760 seconds
+770 seconds
+780 seconds
+790 seconds
+800 seconds
+810 seconds
+820 seconds
+830 seconds
+840 seconds
+850 seconds
+860 seconds
+870 seconds
+880 seconds
+890 seconds
+900 seconds
+910 seconds
+920 seconds
+930 seconds
+940 seconds
+950 seconds
+960 seconds
+970 seconds
+980 seconds
+990 seconds
+1000 seconds
+1010 seconds
+1020 seconds
+1030 seconds
+1040 seconds
+1050 seconds
+1060 seconds
+1070 seconds
+1080 seconds
+1090 seconds
+1100 seconds
+1110 seconds
+1120 seconds
+1130 seconds
+1140 seconds
+1150 seconds
+1160 seconds
+1170 seconds
+1180 seconds
+1190 seconds
+1200 seconds
+1210 seconds
+1220 seconds
+1230 seconds
+1240 seconds
+1250 seconds
+1260 seconds
+1270 seconds
+1280 seconds
+1290 seconds
+1300 seconds
+1310 seconds
+1320 seconds
+1330 seconds
+1340 seconds
+1350 seconds
+1360 seconds
+1370 seconds
+1380 seconds
+1390 seconds
+1400 seconds
+1410 seconds
+1420 seconds
+1430 seconds
+1440 seconds
+1450 seconds
+1460 seconds
+1470 seconds
+1480 seconds
+1490 seconds
+1500 seconds
+1510 seconds
+1520 seconds
+1530 seconds
+1540 seconds
+1550 seconds
+1560 seconds
+1570 seconds
+1580 seconds
+1590 seconds
+1600 seconds
+1610 seconds
+1620 seconds
+1630 seconds
+1640 seconds
+1650 seconds
+1660 seconds
+1670 seconds
+1680 seconds
+1690 seconds
+1700 seconds
+1710 seconds
+1720 seconds
+1730 seconds
+1740 seconds
+1750 seconds
+1760 seconds
+1770 seconds
+1780 seconds
+1790 seconds
+1800 seconds
+1810 seconds
+1820 seconds
+1830 seconds
+1840 seconds
+1850 seconds
+1860 seconds
+1870 seconds
+1880 seconds
+1890 seconds
+1900 seconds
+1910 seconds
+1920 seconds
+1930 seconds
+1940 seconds
+1950 seconds
+1960 seconds
+1970 seconds
+1980 seconds
+1990 seconds
+2000 seconds
+Simulation complete.

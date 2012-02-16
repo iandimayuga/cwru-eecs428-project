@@ -1,0 +1,14 @@
+Ian Dimayuga
+EECS 428 Episode 1
+
+The final elephants.txt displays the time (and fid) of the last transmission by the elephants in Arena 1, 2, and 3 respectively. Thus, I conclude the first elephant finished after 671 seconds, the second finished after 875 seconds, and the third finished after 1731 seconds.
+
+The elephants.txt can be reproduced by running endtime.sh against a trace file named ep1.tr.
+
+The interesting point here is that while the third elephant had nearly 20 times the latency as the first, it finished in three times the time. This is because the other two elephants had finished, allowing the third one to take up nearly the full bandwidth of the link.
+
+The simulation is very likely correct, as evidenced by presence.txt, showing that every browser is connecting and contributing to the flow. Because I constructed my code in a modular, object-oriented manner, a mistake would likely have removed one (or likely ten) browsers from the trace altogether.
+
+The presence.txt can be reproduced by running presence.sh against the same trace file.
+
+Finally, ep1.out shows the output of the ns simulation, which describes the identities of each fid.
