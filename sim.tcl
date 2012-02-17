@@ -41,6 +41,11 @@ Elephant instproc init {isSource name} {
   }
   $ns attach-agent $m_node $m_agent
 }
+Elephant instproc connect { other} {
+  global ns
+  $self instvar m_agent
+  $ns connect $m_agent [$other set m_agent] 
+}
 
 Class Browser
 Browser instproc init {name} {
