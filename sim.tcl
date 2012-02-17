@@ -113,7 +113,7 @@ Browser instproc connect { other} {
 }
 
 Class Region
-Region instproc init {num isWest} {
+Region instproc init {num isWest arena} {
   global ns
 
   #Router node
@@ -126,14 +126,19 @@ Region instproc init {num isWest} {
   $self instvar m_elephant
 
   set m_router [$ns node]
+
+  set m_elephant [new Elephant $isWest "Elephant_arena$arena"]
+  $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
+
   for {set i 0} {$i < $num} {incr i} {
-    set m_browsers($i) [new Browser]
+    if {$isWest} {
+      set m_browsers($i) [new Browser "Browser_west_arena$arena"]
+    } else {
+      set m_browsers($i) [new Browser "Browser_east_arena$arena"]
+    }
 
     $ns duplex-link [$m_browsers($i) set m_node] $m_router 300k 50ms DropTail
   }
-
-  set m_elephant [new Elephant $isWest]
-  $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
 }
 
 #backbone routers
@@ -156,16 +161,17 @@ set latencies(0) 10ms
 set latencies(1) 50ms
 set latencies(2) 200ms
 
-
-set wests(0) [new Region $n "true"]
-set wests(1) [new Region $n "true"]
-set wests(2) [new Region $n "true"]
-set easts(0) [new Region $n "false"]
-set easts(1) [new Region $n "false"]
-set easts(2) [new Region $n "false"]
-
+#for each arena
 for {set i 0} {$i < 3} {incr i} {
+  set wests($i) [new Region $n "true" [expr $i+1]]
+  set easts($i) [new Region $n "false" [expr $i+1]]
+
   $ns duplex-link [$wests($i) set m_router] $rWest 100Mb $latencies($i) DropTail
   $ns duplex-link [$easts($i) set m_router] $rEast 100Mb $latencies($i) DropTail
 
+  [$wests($i) set m_elephant] connect [$easts($i) set m_elephant]
+
+  for {set j 0} {$j < $n} {incr j} {
+    [$wests($i) set m_browsers($j)] connect [$easts($i) set m_browsers($j)]
+  }
 }
