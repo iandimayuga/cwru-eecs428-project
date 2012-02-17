@@ -15,8 +15,11 @@ Queue set limit_ 512
 #initialize simulator engine
 set ns [new Simulator]
 
+#flow id counter
+set fid 0
+
 Class Elephant
-Elephant instproc init {isSource} {
+Elephant instproc init {isSource name} {
   global ns
   #initialize node
   $self instvar m_node
@@ -29,6 +32,10 @@ Elephant instproc init {isSource} {
   if {$isSource} {
     set m_agent [new Agent/TCP/Sack1]
     $m_agent set class_ 2
+
+    global fid
+    $m_agent set fid_ [incr fid]
+    puts "[$m_agent set fid_] $name"
   } else {
     set m_agent [new Agent/TCPSink/Sack1/DelAck]
   }
@@ -36,7 +43,7 @@ Elephant instproc init {isSource} {
 }
 
 Class Browser
-Browser instproc init {} {
+Browser instproc init {name} {
   global ns
   #initialize node
   $self instvar m_node
@@ -69,6 +76,12 @@ Browser instproc init {} {
   $m_voip set idle_time_ 180ms
   $m_voip set rate_ 56k
 
+  global fid
+  $m_tcpsrc set fid_ [incr fid]
+  puts "[$m_tcpsrc set fid_] $name pareto"
+  $m_udpsrc set fid_ [incr fid]
+  puts "[$m_udpsrc set fid_] $name voip"
+
   #attach applications to agents
   $m_pareto attach-agent $m_tcpsrc
   $m_voip attach-agent $m_udpsrc
@@ -81,6 +94,17 @@ Browser instproc init {} {
   $ns attach-agent $m_node $m_tcpsink
   $ns attach-agent $m_node $m_udpsrc
   $ns attach-agent $m_node $m_udpsink
+}
+Browser instproc connect { other} {
+  global ns
+  $self instvar m_tcpsrc
+  $self instvar m_tcpsink
+  $self instvar m_udpsrc
+  $self instvar m_udpsink
+  $ns connect $m_tcpsrc [$other set m_tcpsink] 
+  $ns connect $m_udpsrc [$other set m_udpsink]
+  $ns connect [$other set m_tcpsrc] $m_tcpsink
+  $ns connect [$other set m_udpsrc] $m_udpsink
 }
 
 Class Region
