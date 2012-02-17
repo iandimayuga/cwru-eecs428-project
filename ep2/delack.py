@@ -38,7 +38,6 @@ for i in sys.stdin:
 		continue
 	if j[4] == "pareto" or j[4] == "tcp":
 		outstanding[ (flow_id, seq_no) ] = time
-                sent += 1
 	if j[4] == "ack":
 		if (flow_id, seq_no) in outstanding:
 			diff = time - outstanding[(flow_id, seq_no)]

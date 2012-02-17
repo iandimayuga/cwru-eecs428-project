@@ -12,4 +12,4 @@ for i in sys.stdin:
   if j[7] in elephants:
     endtimes[j[7]] = j[1]
 
-print "Elephant 1: %s\nElephant 2: %s\n Elephant 3: %s\n" % (endtimes[elephants[0]], endtimes[elephants[1]], endtimes[elephants[2]])
+print "Elephant 1: %s\nElephant 2: %s\nElephant 3: %s\n" % (endtimes[elephants[0]], endtimes[elephants[1]], endtimes[elephants[2]])

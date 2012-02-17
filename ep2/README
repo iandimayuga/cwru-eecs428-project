@@ -1,0 +1,23 @@
+Ian Dimayuga
+EECS 428 Episode 2
+
+I have included the nam trace as well as the output from my tests.
+
+According to the tests, the mean exponential burst time is 156 seconds, which is roughly close to 180.
+I cannot find a specific reason for the 24-second disparity, and the exponential burst time is specified in one line of code, so I accept the result.
+
+The exponential idle time is 60 seconds as expected.
+
+The only packets that are not 1500B were syns and acks.
+
+The majority of acks were sent immediately, and the next greatest number of acks were sent exactly 50ms after the data they acknowledge.
+This indicates that the DelAck timeout I configured to be 50ms was firing at that time.
+There were several acks that did not conform to these categories, but the number is negligible and is likely due to retransmissions.
+
+The TCP packet to ack ratio is 1.97, which indicates that every other packet was acknowledged.
+
+Finally, the Elephant stopping times are very similar to Episode 1's stopping times:
+
+Elephant 1: 663s
+Elephant 2: 829s
+Elephant 3: 1397s
