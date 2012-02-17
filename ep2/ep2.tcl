@@ -124,8 +124,8 @@ Browser instproc init {name} {
   set m_udpsrc [new Agent/UDP]
   set m_voip [new Application/Traffic/Exponential]
   $m_voip set packetSize_ 1500B
-  $m_voip set burst_time_ 60ms 
-  $m_voip set idle_time_ 180ms
+  $m_voip set burst_time_ 60s 
+  $m_voip set idle_time_ 180s
   $m_voip set rate_ 56k
 
   global fid
