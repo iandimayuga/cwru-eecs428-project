@@ -1,5 +1,5 @@
 # Ian Dimayuga (icd3)
-# EECS 428 Episode 1
+# EECS 428 Project
 
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
@@ -10,6 +10,7 @@ Agent/TCP/Sack1 set windowInit_ 2
 Agent/TCP/Sack1 set packetSize_ 1500
 Agent/TCP/Sack1 set slow_start_restart_ false 
 Agent/TCPSink/Sack1/DelAck set interval_ 50ms
+Queue set limit_ 512
 
 #initialize simulator engine
 set ns [new Simulator]
@@ -112,12 +113,29 @@ set rWest [$ns node]
 set rEast [$ns node]
 
 #backbone
-$ns duplex-link $rWest $rEast 
+$ns duplex-link $rWest $rEast 10Mb 20ms DropTail
 
 set n 10
+set runtime 2000
+
+#elephant start times
+set starttime(0) 7
+set starttime(1) 6
+set starttime(2) 5
+
+#access link latencies
 set latencies(0) 10ms
 set latencies(1) 50ms
 set latencies(2) 200ms
 
+
 set wests(0) [new Region $n "true"]
 set wests(1) [new Region $n "true"]
+set wests(2) [new Region $n "true"]
+set easts(0) [new Region $n "false"]
+set easts(1) [new Region $n "false"]
+set easts(2) [new Region $n "false"]
+
+for {set i 0} {$i < 3} {incr i} {
+  
+}
