@@ -1,6 +1,9 @@
 # Ian Dimayuga (icd3)
 # EECS 428 Project
 
+#initialize simulator engine
+set ns [new Simulator]
+
 set episode 2
 set n 1
 set runtime 50
@@ -17,11 +20,34 @@ Agent/TCP/Sack1 set slow_start_restart_ false
 Agent/TCPSink/Sack1/DelAck set interval_ 50ms
 Queue set limit_ 512
 
-#initialize simulator engine
-set ns [new Simulator]
-
 #flow id counter
 set fid 0
+
+if {$nam} {
+  set nf [open "ep$episode/ep$episode.nam" w]
+  $ns namtrace-all $nf
+}
+
+set tf [open "ep$episode/ep$episode.tr" w]
+$ns trace-all $tf
+
+proc finish {} {
+  global ns tf nam episode
+  $ns flush-trace
+  #Close the Trace file
+  close $tf
+  
+  if {$nam} {
+    global nf
+    #Close the NAM trace file
+    close $nf
+  }
+
+  puts "Simulation complete."
+
+  exit 0
+}
+
 
 Class Elephant
 Elephant instproc init {isSource name} {
@@ -48,6 +74,11 @@ Elephant instproc init {isSource name} {
     global fid
     $m_agent set fid_ [incr fid]
     puts "[$m_agent set fid_] $name"
+
+    global nam
+    if {$nam} {
+      $ns color [$m_agent set fid_] Red
+    }
   } else {
     set m_agent [new Agent/TCPSink/Sack1/DelAck]
   }
@@ -101,6 +132,12 @@ Browser instproc init {name} {
   puts "[$m_tcpsrc set fid_] $name pareto"
   $m_udpsrc set fid_ [incr fid]
   puts "[$m_udpsrc set fid_] $name voip"
+
+  global nam
+  if {$nam} {
+    $ns color [$m_tcpsrc set fid_] Green
+    $ns color [$m_udpsrc set fid_] Blue
+  }
 
   #attach applications to agents
   $m_pareto attach-agent $m_tcpsrc
@@ -195,31 +232,7 @@ for {set i 0} {$i <= $runtime} {incr i 10} {
   $ns at $i "puts \"$i seconds\""
 }
 
-if {$nam} {
-  set nf [open "ep$episode/ep$episode.nam" w]
-  $ns namtrace-all $nf
-}
-
-set tf [open "ep$episode/ep$episode.tr" w]
-$ns trace-all $tf
-
-proc finish {} {
-  global ns tf nam episode
-  $ns flush-trace
-  #Close the Trace file
-  close $tf
-  
-  if {$nam} {
-    global nf
-    #Close the NAM trace file
-    close $nf
-    #Execute NAM on the trace file
-    exec nam "ep$episode/ep$episode.nam" &
-  }
-
-  exit 0
-}
-
 $ns at $runtime "finish"
 
+puts "Starting simulation..."
 $ns run
