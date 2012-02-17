@@ -18,8 +18,6 @@ def is_end_host(num):
 	return num >= 2
 
 outstanding = {}
-sent = 0
-acks = 0
 for i in sys.stdin:
 	j = i.strip().split(" ")
 	time = float(j[1])
@@ -46,9 +44,7 @@ for i in sys.stdin:
 			diff = time - outstanding[(flow_id, seq_no)]
 			print "%s" % (diff,)
 			del outstanding[(flow_id, seq_no)]
-                        acks += 1
 		else:
 			pass
 			#print "Error: ACK for unsent packet, flow!"
 
-print "Total tcp/ack ratio: %f" % (float(sent) / float(acks),)
