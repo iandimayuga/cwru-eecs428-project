@@ -7,6 +7,7 @@ Agent/TCP/Sack1 set window_ 256
 Agent/TCP/Sack1 set maxcwnd_ 256 
 Agent/TCP/Sack1 set windowInitOption_ 1 
 Agent/TCP/Sack1 set windowInit_ 2 
+Agent/TCP/Sack1 set packetSize_ 1500
 Agent/TCP/Sack1 set slow_start_restart_ false 
 Agent/TCPSink/Sack1/DelAck set interval_ 50ms
 
@@ -111,7 +112,7 @@ set rWest [$ns node]
 set rEast [$ns node]
 
 #backbone
-$ns duplex-link
+$ns duplex-link $rWest $rEast 
 
 set n 10
 set latencies(0) 10ms
