@@ -7,7 +7,7 @@ set ns [new Simulator]
 set episode 2
 set n 1
 set runtime 50
-set nam "true"
+set nam "false"
 
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
@@ -15,9 +15,10 @@ Agent/TCP/Sack1 set window_ 256
 Agent/TCP/Sack1 set maxcwnd_ 256 
 Agent/TCP/Sack1 set windowInitOption_ 1 
 Agent/TCP/Sack1 set windowInit_ 2 
-Agent/TCP/Sack1 set packetSize_ 1500
+Agent/TCP/Sack1 set packetSize_ 1460B
 Agent/TCP/Sack1 set slow_start_restart_ false 
 Agent/TCPSink/Sack1/DelAck set interval_ 50ms
+Agent/UDP set packetSize_ 1500B
 Queue set limit_ 512
 
 #flow id counter
@@ -112,7 +113,7 @@ Browser instproc init {name} {
 
   set m_tcpsrc [new Agent/TCP/Sack1]
   set m_pareto [new Application/Traffic/Pareto]
-  $m_pareto set packetSize_ 1500
+  $m_pareto set packetSize_ 1460B
   $m_pareto set burst_time_ 500ms
   $m_pareto set idle_time_ 60s
 
@@ -122,7 +123,7 @@ Browser instproc init {name} {
 
   set m_udpsrc [new Agent/UDP]
   set m_voip [new Application/Traffic/Exponential]
-  $m_voip set packetSize_ 1500
+  $m_voip set packetSize_ 1500B
   $m_voip set burst_time_ 60ms 
   $m_voip set idle_time_ 180ms
   $m_voip set rate_ 56k
@@ -233,6 +234,10 @@ for {set i 0} {$i <= $runtime} {incr i 10} {
 }
 
 $ns at $runtime "finish"
+
+if {$nam} {
+  puts "NAM trace active."
+}
 
 puts "Starting simulation..."
 $ns run
