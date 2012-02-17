@@ -84,7 +84,7 @@ Browser instproc init {} {
 }
 
 Class Region
-Region instproc init {num, isWest} {
+Region instproc init {num isWest} {
   global ns
 
   #Router node
@@ -100,12 +100,11 @@ Region instproc init {num, isWest} {
   for {set i 0} {$i < $num} {incr i} {
     set m_browsers($i) [new Browser]
 
-    $ns duplex-link $m_sources($i) $m_router 300k 50ms DropTail
-    $ns duplex-link $m_sinks($i) $m_router 300k 50ms DropTail
+    $ns duplex-link [$m_browsers($i) set m_node] $m_router 300k 50ms DropTail
   }
 
   set m_elephant [new Elephant $isWest]
-  $ns duplex-link $m_elephant $m_router 1G 1ms DropTail
+  $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
 }
 
 #backbone routers
@@ -137,5 +136,7 @@ set easts(1) [new Region $n "false"]
 set easts(2) [new Region $n "false"]
 
 for {set i 0} {$i < 3} {incr i} {
-  
+  $ns duplex-link [$wests($i) set m_router] $rWest 100Mb $latencies($i) DropTail
+  $ns duplex-link [$easts($i) set m_router] $rEast 100Mb $latencies($i) DropTail
+
 }
