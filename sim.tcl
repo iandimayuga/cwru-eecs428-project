@@ -204,7 +204,7 @@ set tf [open "ep$episode/ep$episode.tr" w]
 $ns trace-all $tf
 
 proc finish {} {
-  global ns tf
+  global ns tf nam
   $ns flush-trace
   #Close the Trace file
   close $tf
