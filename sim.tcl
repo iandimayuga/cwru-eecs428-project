@@ -1,6 +1,11 @@
 # Ian Dimayuga (icd3)
 # EECS 428 Project
 
+set episode 2
+set n 1
+set runtime 50
+set nam "true"
+
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
 Agent/TCP/Sack1 set window_ 256
@@ -28,10 +33,17 @@ Elephant instproc init {isSource name} {
   #declare agent
   $self instvar m_agent
 
+  #declare application
+  $self instvar m_ftp
+
   #source elephant or sink elephant
   if {$isSource} {
     set m_agent [new Agent/TCP/Sack1]
     $m_agent set class_ 2
+
+    set m_ftp [new Application/FTP]
+    $m_ftp attach-agent $m_agent
+    $m_ftp set type_ FTP
 
     global fid
     $m_agent set fid_ [incr fid]
@@ -41,10 +53,13 @@ Elephant instproc init {isSource name} {
   }
   $ns attach-agent $m_node $m_agent
 }
-Elephant instproc connect { other} {
+Elephant instproc connect {other starttime} {
   global ns
   $self instvar m_agent
   $ns connect $m_agent [$other set m_agent] 
+
+  $self instvar m_ftp
+  $ns at $starttime "$m_ftp send 400000000"
 }
 
 Class Browser
@@ -90,6 +105,9 @@ Browser instproc init {name} {
   #attach applications to agents
   $m_pareto attach-agent $m_tcpsrc
   $m_voip attach-agent $m_udpsrc
+
+  $ns at 0.0 "$m_pareto start"
+  $ns at 0.0 "$m_voip start"
 
   set m_tcpsink [new Agent/TCPSink/Sack1/DelAck]
   set m_udpsink [new Agent/Null]
@@ -148,9 +166,6 @@ set rEast [$ns node]
 #backbone
 $ns duplex-link $rWest $rEast 10Mb 20ms DropTail
 
-set n 10
-set runtime 2000
-
 #elephant start times
 set starttime(0) 7
 set starttime(1) 6
@@ -169,9 +184,42 @@ for {set i 0} {$i < 3} {incr i} {
   $ns duplex-link [$wests($i) set m_router] $rWest 100Mb $latencies($i) DropTail
   $ns duplex-link [$easts($i) set m_router] $rEast 100Mb $latencies($i) DropTail
 
-  [$wests($i) set m_elephant] connect [$easts($i) set m_elephant]
+  [$wests($i) set m_elephant] connect [$easts($i) set m_elephant] $starttime($i)
 
   for {set j 0} {$j < $n} {incr j} {
     [$wests($i) set m_browsers($j)] connect [$easts($i) set m_browsers($j)]
   }
 }
+
+for {set i 0} {$i <= $runtime} {incr i 10} {
+  $ns at $i "puts \"$i seconds\""
+}
+
+if {$nam} {
+  set nf [open "ep$episode/ep$episode.nam" w]
+  $ns namtrace-all $nf
+}
+
+set tf [open "ep$episode/ep$episode.tr" w]
+$ns trace-all $tf
+
+proc finish {} {
+  global ns tf
+  $ns flush-trace
+  #Close the Trace file
+  close $tf
+  
+  if {$nam} {
+    global nf
+    #Close the NAM trace file
+    close $nf
+    #Execute NAM on the trace file
+    exec nam "ep$episode/ep$episode.nam" &
+  }
+
+  exit 0
+}
+
+$ns at $runtime "finish"
+
+$ns run
