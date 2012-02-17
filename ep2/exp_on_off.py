@@ -20,7 +20,7 @@ def group_sending(l):
 
 def dist_fit(exp):
 	alpha,loc,beta = ss.gamma.fit(exp)
-	print "Alpha: %s\tLoc: %s\tBeta: %s" % (alpha,loc,beta)
+	#print "Alpha: %s\tLoc: %s\tBeta: %s" % (alpha,loc,beta)
         print "Mean: %s" % (sum(exp)/len(exp),)
 
 distributions = {}

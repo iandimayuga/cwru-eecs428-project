@@ -5,8 +5,8 @@
 set ns [new Simulator]
 
 set episode 2
-set n 3
-set runtime 50
+set n 10
+set runtime 2000
 set nam "false"
 
 # Configure Defaults
