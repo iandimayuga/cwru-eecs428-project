@@ -1,11 +1,11 @@
 # Ian Dimayuga (icd3)
-# EECS 428 Project Episode 2
+# EECS 428 Project
 
 #initialize simulator engine
 set ns [new Simulator]
 
 set episode 2
-set n 5
+set n 3
 set runtime 50
 set nam "false"
 
@@ -130,9 +130,9 @@ Browser instproc init {name} {
 
   global fid
   $m_tcpsrc set fid_ [incr fid]
-  puts "[$m_tcpsrc set fid_] $name pareto"
+  #puts "[$m_tcpsrc set fid_] $name pareto"
   $m_udpsrc set fid_ [incr fid]
-  puts "[$m_udpsrc set fid_] $name voip"
+  #puts "[$m_udpsrc set fid_] $name voip"
 
   global nam
   if {$nam} {
@@ -183,7 +183,7 @@ Region instproc init {num isWest arena} {
 
   set m_router [$ns node]
 
-  set m_elephant [new Elephant $isWest "Elephant_arena$arena"]
+  set m_elephant [new Elephant $isWest "Elephant $arena"]
   $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
 
   for {set i 0} {$i < $num} {incr i} {

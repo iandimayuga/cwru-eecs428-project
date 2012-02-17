@@ -1,67 +1,11 @@
-1 Elephant_arena1
-2 Browser_west_arena1 pareto
-3 Browser_west_arena1 voip
-4 Browser_west_arena1 pareto
-5 Browser_west_arena1 voip
-6 Browser_west_arena1 pareto
-7 Browser_west_arena1 voip
-8 Browser_west_arena1 pareto
-9 Browser_west_arena1 voip
-10 Browser_west_arena1 pareto
-11 Browser_west_arena1 voip
-12 Browser_east_arena1 pareto
-13 Browser_east_arena1 voip
-14 Browser_east_arena1 pareto
-15 Browser_east_arena1 voip
-16 Browser_east_arena1 pareto
-17 Browser_east_arena1 voip
-18 Browser_east_arena1 pareto
-19 Browser_east_arena1 voip
-20 Browser_east_arena1 pareto
-21 Browser_east_arena1 voip
-22 Elephant_arena2
-23 Browser_west_arena2 pareto
-24 Browser_west_arena2 voip
-25 Browser_west_arena2 pareto
-26 Browser_west_arena2 voip
-27 Browser_west_arena2 pareto
-28 Browser_west_arena2 voip
-29 Browser_west_arena2 pareto
-30 Browser_west_arena2 voip
-31 Browser_west_arena2 pareto
-32 Browser_west_arena2 voip
-33 Browser_east_arena2 pareto
-34 Browser_east_arena2 voip
-35 Browser_east_arena2 pareto
-36 Browser_east_arena2 voip
-37 Browser_east_arena2 pareto
-38 Browser_east_arena2 voip
-39 Browser_east_arena2 pareto
-40 Browser_east_arena2 voip
-41 Browser_east_arena2 pareto
-42 Browser_east_arena2 voip
-43 Elephant_arena3
-44 Browser_west_arena3 pareto
-45 Browser_west_arena3 voip
-46 Browser_west_arena3 pareto
-47 Browser_west_arena3 voip
-48 Browser_west_arena3 pareto
-49 Browser_west_arena3 voip
-50 Browser_west_arena3 pareto
-51 Browser_west_arena3 voip
-52 Browser_west_arena3 pareto
-53 Browser_west_arena3 voip
-54 Browser_east_arena3 pareto
-55 Browser_east_arena3 voip
-56 Browser_east_arena3 pareto
-57 Browser_east_arena3 voip
-58 Browser_east_arena3 pareto
-59 Browser_east_arena3 voip
-60 Browser_east_arena3 pareto
-61 Browser_east_arena3 voip
-62 Browser_east_arena3 pareto
-63 Browser_east_arena3 voip
+1 Elephant 1
+14 Elephant 2
+27 Elephant 3
 Starting simulation...
 0 seconds
 10 seconds
 20 seconds
+30 seconds
+40 seconds
+50 seconds
+Simulation complete.
