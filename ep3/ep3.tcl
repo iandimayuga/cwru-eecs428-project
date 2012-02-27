@@ -91,7 +91,7 @@ Elephant instproc connect {other starttime} {
   $ns connect $m_agent [$other set m_agent] 
 
   $self instvar m_ftp
-  $ns at $starttime "$m_ftp send 400MB"
+  $ns at $starttime "$m_ftp send 400M"
 }
 
 Class Browser
@@ -99,9 +99,9 @@ Browser instproc init {name} {
   global ns
   #initialize nodes
   $self instvar m_srcnode
-  $self instvar m_snknode
-
   set m_srcnode [$ns node]
+
+  $self instvar m_snknode
   set m_snknode [$ns node]
 
   #declare agents
