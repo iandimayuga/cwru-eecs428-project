@@ -5,9 +5,9 @@
 set ns [new Simulator]
 
 set episode 3
-set n 10
-set runtime 2000
-set nam "false"
+set n 1
+set runtime 10
+set nam "true"
 
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
