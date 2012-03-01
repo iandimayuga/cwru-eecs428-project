@@ -97,9 +97,11 @@ Elephant instproc connect {other starttime} {
 Class Browser
 Browser instproc init {name} {
   global ns
-  #initialize node
-  $self instvar m_node
-  set m_node [$ns node]
+  #initialize nodes
+  $self instvar m_srcnode
+  set m_srcnode [$ns node]
+  $self instvar m_snknode
+  set m_snknode [$ns node]
 
   #declare agents
   $self instvar m_tcpsrc
@@ -151,10 +153,10 @@ Browser instproc init {name} {
   set m_udpsink [new Agent/Null]
 
   #attach agents to nodes
-  $ns attach-agent $m_node $m_tcpsrc
-  $ns attach-agent $m_node $m_tcpsink
-  $ns attach-agent $m_node $m_udpsrc
-  $ns attach-agent $m_node $m_udpsink
+  $ns attach-agent $m_srcnode $m_tcpsrc
+  $ns attach-agent $m_snknode $m_tcpsink
+  $ns attach-agent $m_srcnode $m_udpsrc
+  $ns attach-agent $m_snknode $m_udpsink
 }
 Browser instproc connect { other} {
   global ns
@@ -193,7 +195,8 @@ Region instproc init {num isWest arena} {
       set m_browsers($i) [new Browser "Browser_east_arena$arena"]
     }
 
-    $ns duplex-link [$m_browsers($i) set m_node] $m_router 300k 50ms DropTail
+    $ns duplex-link [$m_browsers($i) set m_srcnode] $m_router 300k 50ms DropTail
+    $ns duplex-link [$m_browsers($i) set m_snknode] $m_router 300k 50ms DropTail
   }
 }
 

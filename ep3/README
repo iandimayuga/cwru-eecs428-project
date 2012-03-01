@@ -1,0 +1,10 @@
+Ian Dimayuga
+EECS 428 Episode 3
+
+I have corrected the elephant file size to be 400MB as specified.
+I have also corrected the Browser class to have two nodes, a source and a sink, each independently connected to the regional router.
+The test results are very similar, but the elephant finishing times have changed.
+
+Elephant 1: 704s
+Elephant 2: 885s
+Elephant 3: 1441s
