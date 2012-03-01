@@ -5,9 +5,9 @@
 set ns [new Simulator]
 
 set episode 3
-set n 1
-set runtime 10
-set nam "true"
+set n 10
+set runtime 2000
+set nam "false"
 
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
@@ -91,18 +91,15 @@ Elephant instproc connect {other starttime} {
   $ns connect $m_agent [$other set m_agent] 
 
   $self instvar m_ftp
-  $ns at $starttime "$m_ftp send 400M"
+  $ns at $starttime "$m_ftp send 419430400"
 }
 
 Class Browser
 Browser instproc init {name} {
   global ns
-  #initialize nodes
-  $self instvar m_srcnode
-  set m_srcnode [$ns node]
-
-  $self instvar m_snknode
-  set m_snknode [$ns node]
+  #initialize node
+  $self instvar m_node
+  set m_node [$ns node]
 
   #declare agents
   $self instvar m_tcpsrc
@@ -154,10 +151,10 @@ Browser instproc init {name} {
   set m_udpsink [new Agent/Null]
 
   #attach agents to nodes
-  $ns attach-agent $m_srcnode $m_tcpsrc
-  $ns attach-agent $m_snknode $m_tcpsink
-  $ns attach-agent $m_srcnode $m_udpsrc
-  $ns attach-agent $m_snknode $m_udpsink
+  $ns attach-agent $m_node $m_tcpsrc
+  $ns attach-agent $m_node $m_tcpsink
+  $ns attach-agent $m_node $m_udpsrc
+  $ns attach-agent $m_node $m_udpsink
 }
 Browser instproc connect { other} {
   global ns
@@ -179,7 +176,6 @@ Region instproc init {num isWest arena} {
   $self instvar m_router
   
   #Browsers
-  #Note: Each browser now has TWO nodes, a source and a sink
   $self instvar m_browsers
 
   #Elephant
@@ -190,7 +186,6 @@ Region instproc init {num isWest arena} {
   set m_elephant [new Elephant $isWest "Elephant $arena"]
   $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
 
-  #for each browser
   for {set i 0} {$i < $num} {incr i} {
     if {$isWest} {
       set m_browsers($i) [new Browser "Browser_west_arena$arena"]
@@ -198,9 +193,7 @@ Region instproc init {num isWest arena} {
       set m_browsers($i) [new Browser "Browser_east_arena$arena"]
     }
 
-    #attach both browser nodes to the router independently
-    $ns duplex-link [$m_browsers($i) set m_srcnode] $m_router 300k 50ms DropTail
-    $ns duplex-link [$m_browsers($i) set m_snknode] $m_router 300k 50ms DropTail
+    $ns duplex-link [$m_browsers($i) set m_node] $m_router 300k 50ms DropTail
   }
 }
 
