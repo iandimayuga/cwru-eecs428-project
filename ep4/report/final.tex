@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{graphicx,amssymb,amstext,amsmath}
+\begin{document}
+%-----------------------------------------------------------
+\title{EECS 428 Episode 4}
+\author{Ian Dimayuga}
+\maketitle
+%-----------------------------------------------------------
+\section{Exponential Flows}
+
+\paragraph{}
+Trace file analysis has yielded an average on time ($\mu_{exp}$) of 80.2846 seconds, and an average off time ($w_{exp}$) of 147.7159 seconds.
+The total duration of the simulation ($S$) was 2000 seconds, and the number of browser flows ($n$) was 60.
+The total number of bytes transmitted by the exponential flows ($T$) was measured to be 222283500B, or approximately 212MB.
+
+\paragraph{}
+Theoretically, the total number of bytes transmitted is given by the equation $T = \dfrac{S n \mu r}{\mu + w}$, where $r$ is the average on-time rate in bytes per second.
+
+\paragraph{}
+Solving for $r$, we get $r = 5260.53$ B/s, or about $0.04$ Mbps.
+
+\end{document}
