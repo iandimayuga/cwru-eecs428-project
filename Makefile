@@ -1,6 +1,6 @@
 # Ian Dimayuga (icd3)
 
-all: exp_on_off.out pareto_on_off.out total_pareto_exp.out packet_size.out delack.out delack_count.out endtime.out
+all: exp_on_off.out pareto_on_off.out total_pareto_exp.out packet_size.out delack.out delack_count.out endtime.out ack_plot.dat
 
 trace.tr: sim.tcl
 	@echo "Running Simulation..."
@@ -44,8 +44,12 @@ endtime.out: endtime.py trace.tr elephants.log
 	@echo "Identifying Elephant stop times..."
 	@grep '^r' trace.tr | grep ' tcp ' | python endtime.py | tee endtime.out
 
+ack_plot.dat: ack_plot.py trace.tr routers.log
+	@echo "Generating ACK plot..."
+	@grep '^r' trace.tr | grep ' ack ' | python ack_plot.py | tee ack_plot.dat
+
 clean:
-	rm *.out
+	rm *.out *.dat
 
 traceclean: clean
 	rm trace.tr sim.log
