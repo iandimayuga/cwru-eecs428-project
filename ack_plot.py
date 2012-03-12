@@ -33,14 +33,14 @@ for i in sys.stdin:
   seq = int(j[10])
   if event == 'r' and is_end_host(dst) and type == 'ack':
     if not fid in lastseqnum:
-      lastseqnum[fid] = 0
+      lastseqnum[fid] = -1
 
     #scale ack bytes by number of packets, determined by seq interval
     if seq < lastseqnum[fid]:
       print "#WARNING: SEQUENCE ROLLOVER"
-      lastseqnum[fid] = seq
+      lastseqnum[fid] = seq - 1
 
-    bytesacked += bytesperpkt * (seq - lastseqnum[fid] + 1)
+    bytesacked += bytesperpkt * (seq - lastseqnum[fid])
     lastseqnum[fid] = seq
     
     if time >= nextpoint:
