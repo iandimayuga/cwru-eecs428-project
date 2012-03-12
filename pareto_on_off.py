@@ -28,7 +28,7 @@ def group_sending(l):
 	return time_segments
 
 def dist_fit(pareto):
-	alpha,loc,beta = ss.gamma.fit(pareto)
+	#alpha,loc,beta = ss.pareto.fit(pareto)
 	#print "Alpha: %s\tLoc: %s\tBeta: %s" % (alpha,loc,beta)
         print "Mean: %s" % (sum(pareto)/len(pareto),)
 
