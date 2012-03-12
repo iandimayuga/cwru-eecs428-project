@@ -36,4 +36,19 @@ Given that each Elephant must transmit a 400MB file, the Elephant is expected to
 \paragraph{}
 The measured Elephant finish times were 704s, 885s, and 1441s. This is in keeping with the expected average finish time.
 
+\section{Bytes ACKed Over Time}
+\paragraph{}
+As shown in Figure \ref{fig:ack_plot}, the data ACKed over time does not change as the first Elephant finishes at 704s.
+This can be interpreted to mean that the link is at full utilization all the way until the second Elephant finishes.
+There are distinct slope changes when the second and third Elephants finish.
+Furthermore, the total number of bytes ACKed at the conclusion of the trace is 1.21 GB, which is equal to the sum of the three 400 MB files and the 16 MB of total data in the pareto flows.
+
+\begin{figure}[h]
+  \begin{centering}
+    \input{ack_plot}
+    \caption{Plot of the number of bytes ACKed at the source, taken every 10 seconds.}
+    \label{fig:ack_plot}
+  \end{centering}
+\end{figure}
+
 \end{document}
