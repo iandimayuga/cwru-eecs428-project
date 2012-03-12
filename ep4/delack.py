@@ -36,15 +36,15 @@ for i in sys.stdin:
  ## If a pareto or tcp thing is received by the dest
  #if not is_end_host(src) or not is_end_host(dst):
  #        continue
-  if j[0] == "r" and (j[4] == "pareto" or j[4] == "tcp"):
-    outstanding[flow_id] = (time, src, dst)
-  if j[0] == "+" and j[4] == "ack":
-    if flow_id in outstanding:
-      triple = outstanding[flow_id]
-      if triple[1] == dst and triple[2] == src:
-        diff = time - outstanding[flow_id][0]
-        print "%s" % (diff,)
-        del outstanding[flow_id]
+  if j[0] == "r" and (j[4] == "pareto" or j[4] == "tcp") and is_end_host(dst):
+    if dst not in outstanding:
+      outstanding[dst] = []
+    outstanding[dst].append(time)
+  if j[0] == "+" and j[4] == "ack" and is_end_host(src):
+    if src in outstanding:
+      diff = time - outstanding[src][-1]
+      print "%s" % (diff,)
+      del outstanding[src]
     else:
       pass
             #print "Error: ACK for unsent packet, flow!"
