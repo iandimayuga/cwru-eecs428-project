@@ -3,8 +3,17 @@
 import sys
 import scipy.stats as ss
 
-def is_end_host(i):
-	return (int(i) >= 2)
+routers = {}
+f = open("routers.log", "r")
+for i in f.readlines():
+	routers[int(i.strip())] = 1
+f.close()
+
+def is_end_host(num):
+	"""
+	You may need to customize this to whatever hosts are your end hosts.
+	"""
+	return not num in routers
 
 def group_sending(l):
 	time_segments = []

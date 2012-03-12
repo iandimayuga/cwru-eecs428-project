@@ -13,7 +13,7 @@
 
 import sys
 routers = {}
-f = open("hosts_routers", "r")
+f = open("routers.out", "r")
 for i in f.readlines():
 	routers[int(i.strip())] = 1
 f.close()
