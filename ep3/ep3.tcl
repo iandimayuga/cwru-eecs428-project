@@ -184,6 +184,7 @@ Region instproc init {num isWest arena} {
   $self instvar m_elephant
 
   set m_router [$ns node]
+  puts "[m_router set id] is a router"
 
   set m_elephant [new Elephant $isWest "Elephant $arena"]
   $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
@@ -203,6 +204,8 @@ Region instproc init {num isWest arena} {
 #backbone routers
 set rWest [$ns node]
 set rEast [$ns node]
+puts "[rWest set id] is a router"
+puts "[rEast set id] is a router"
 
 #backbone
 $ns duplex-link $rWest $rEast 10Mb 20ms DropTail
