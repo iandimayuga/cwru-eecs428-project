@@ -29,7 +29,7 @@ printnext = False
 printtime = 0
 headersize = 40
 
-print '#Time(secs)\tBW0\tBW1\tBW2\tTotal'
+print '#Time(secs)\tBW0\tBW1\tBW2\tTotal(kbps)'
 
 for i in sys.stdin:
   j = i.strip().split(' ')
@@ -38,7 +38,7 @@ for i in sys.stdin:
   src = int(j[2])
   dst = int(j[3])
   type = j[4]
-  size = int(j[5]) - headersize
+  size = int(j[5]) * 8 / 1024
   fid = int(j[7])
   seq = int(j[10])
   if event == '-' and fid in elephants and type == 'tcp' and is_rWest(src) and is_rEast(dst):
