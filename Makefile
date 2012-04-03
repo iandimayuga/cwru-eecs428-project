@@ -48,6 +48,10 @@ ack_plot.dat: ack_plot.py trace.tr routers.log
 	@echo "Generating ACK plot..."
 	@grep '^r' trace.tr | grep ' ack ' | python ack_plot.py | tee ack_plot.dat
 
+elephant_bw.dat: elephant_bw.py trace.tr elephants.log
+	@echo "Generating Elephant bandwidth utilization plot..."
+	@grep '^-' trace.tr | grep ' tcp ' | python elephant_bw.py | tee elephant_bw.dat
+
 clean:
 	rm *.out *.dat
 
