@@ -4,6 +4,7 @@ import sys
 
 f = open("elephants.log", "r")
 elephants = [ int(i.strip()) for i in f.readlines()]
+f.close()
 endtimes = {}
 
 for i in sys.stdin:
