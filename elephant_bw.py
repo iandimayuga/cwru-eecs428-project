@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# grep '^r' trace.tr | grep ' tcp ' | python elephant_bw.py
+# grep '^-' trace.tr | grep ' tcp ' | python elephant_bw.py
 
 import sys
 
