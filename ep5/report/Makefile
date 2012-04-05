@@ -1,5 +1,6 @@
 all:
 	pdflatex final.tex
+	pdflatex final.tex
 
 clean:
 	rm -f *.aux *.log *.toc

@@ -1,74 +1,70 @@
 \documentclass{article}
 \usepackage{graphicx,epsfig,amssymb,amstext,amsmath}
 \begin{document}
-%-----------------------------------------------------------
-\title{EECS 428 Episode 5}
-\author{Ian Dimayuga}
-\maketitle
-%-----------------------------------------------------------
+  %-----------------------------------------------------------
+  \title{EECS 428 Episode 5}
+  \author{Ian Dimayuga}
+  \maketitle
+  %-----------------------------------------------------------
 
-\section{Exponential Flows}
+  \section{Exponential Flows}
+    \paragraph{}
+      The simulation code specifies an average on time of $\mu = 60$ seconds, and an average off time of $w = 180$ seconds.
+      The total duration of the simulation $S = 2000$ seconds, and the number of unidirectional browser flows was $n = 30$.
+      The total number of bytes transmitted by the exponential flows in one direction was measured to be $T = 111141750$ bytes, or approximately 106 MB.
 
-\paragraph{}
-The simulation code specifies an average on time of $\mu = 60$ seconds, and an average off time of $w = 180$ seconds.
-The total duration of the simulation $S = 2000$ seconds, and the number of unidirectional browser flows was $n = 30$.
-The total number of bytes transmitted by the exponential flows in one direction was measured to be $T = 111141750$ bytes, or approximately 106 MB.
+    \paragraph{}
+      Theoretically, the total number of bytes transmitted is given by the equation $T = \dfrac{S n \mu r}{\mu + w}$, where $r$ is the average on-time rate of 56 kbps.
 
-\paragraph{}
-Theoretically, the total number of bytes transmitted is given by the equation $T = \dfrac{S n \mu r}{\mu + w}$, where $r$ is the average on-time rate of 56 kbps.
+    \paragraph{}
+      If we evaluate the equation for $T$, we get $T = 107520000$ bytes, or 103 MB. This matches the measured value of $T$.
+      Dividing this by $S$ gives us an average rate of 53760 B/s, or about 0.41 Mbps.
 
-\paragraph{}
-If we evaluate the equation for $T$, we get $T = 107520000$ bytes, or 103 MB. This matches the measured value of $T$.
-Dividing this by $S$ gives us an average rate of 53760 B/s, or about 0.41 Mbps.
+  \section{Pareto Flows}
+    \paragraph{}
+      For the Pareto flows, we specify an average on time $\mu = 500$ milliseconds, and an average off time of $w = 60$ seconds.
+      The Pareto on-time rate $r$ was 128 kbps.
+      The total number of pareto bytes measured was $T = 8406450$ bytes, or approximately 8 MB.
 
-\section{Pareto Flows}
-\paragraph{}
-For the Pareto flows, we specify an average on time $\mu = 500$ milliseconds, and an average off time of $w = 60$ seconds.
-The Pareto on-time rate $r$ was 128 kbps.
-The total number of pareto bytes measured was $T = 8406450$ bytes, or approximately 8 MB.
+    \paragraph{}
+      If we evaluate the same equation for $T$, we get $T = 8124298$ bytes, or 8 MB. This matches the measured value of $T$.
+      Dividing this by $S$ gives us an average rate of 4062 B/s, or about 0.03 Mbps.
 
-\paragraph{}
-If we evaluate the same equation for $T$, we get $T = 8124298$ bytes, or 8 MB. This matches the measured value of $T$.
-Dividing this by $S$ gives us an average rate of 4062 B/s, or about 0.03 Mbps.
+  \section{Bytes ACKed Over Time}
+    \paragraph{}
+      Given the bandwidth taken up by the Exponential (UDP) flows, TCP packets are left with $10 - r_{exp} = 9.5$ Mbps of bandwidth through the central link.
+      This can be corroborated by measuring the amount of data being ACKed over time.
+      As shown in Figure \ref{fig:ack_plot}, the data ACKed over time does not change as the first Elephant finishes at 704s.
+      The initial slope of this graph (9.5 Mbps) shows that the link is at full utilization all the way until the second Elephant finishes.
+      There are distinct slope changes when the second and third Elephants finish.
+      Furthermore, the total number of bytes ACKed at the conclusion of the trace is 1.21 GB, which is equal to the sum of the three 400 MB files and the 16 MB of total data in the pareto flows.
 
-\section{Elephant Prediction}
+    \begin{figure}[h]
+      \begin{centering}
+        \includegraphics{ack_plot}
+        \caption{The cumulative number of bytes ACKed at the source, taken every 10 seconds.}
+        \label{fig:ack_plot}
+      \end{centering}
+    \end{figure}
 
-\paragraph{}
-The measured Elephant finish times were 704s, 885s, and 1441s.
+  \section{Elephant Prediction}
+    \paragraph{}
+      The measured Elephant finish times were 704s, 885s, and 1441s.
 
-\paragraph{}
-Given the bandwidth taken up by the Pareto and Exponential flows, the Elephants are left with $10 - r_{exp} - r_{pareto} = 9.5$ Mbps of bandwidth through the central link.
-As shown in figure \ref{fig:elephant_bw}, the total Elephant flow bandwidth usage stays at around 9 Mbps until the second elephant finishes at 885s.
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics{elephant_bw}
-    \caption{The bandwidth utilization of each elephant, as well as the total bandwidth utilization of all elephants.}
-    \label{fig:elephant_bw}
-  \end{center}
-\end{figure}
+    \paragraph{}
+      As shown in figure \ref{fig:elephant_bw}, the total Elephant flow bandwidth usage stays at around 9 Mbps until the second elephant finishes at 885s.
+    \begin{figure}[h]
+      \begin{center}
+        \includegraphics{elephant_bw}
+        \caption{The bandwidth utilization of each elephant, as well as the total bandwidth utilization of all elephants.}
+        \label{fig:elephant_bw}
+      \end{center}
+    \end{figure}
 
-\paragraph{}
-
-
-\section{Delayed Acknowledgements}
-\paragraph{}
-After altering the analysis script to take into account only the endpoint, I have accurately measured all DelACK timeouts to be 50ms as intended.
-There were 10905 DelACK timeouts, and 432445 immediate ACKs triggered by data packets.
-The TCP packet to ACK ratio is still 2.
-
-\section{Bytes ACKed Over Time}
-\paragraph{}
-As shown in Figure \ref{fig:ack_plot}, the data ACKed over time does not change as the first Elephant finishes at 704s.
-This can be interpreted to mean that the link is at full utilization all the way until the second Elephant finishes.
-There are distinct slope changes when the second and third Elephants finish.
-Furthermore, the total number of bytes ACKed at the conclusion of the trace is 1.21 GB, which is equal to the sum of the three 400 MB files and the 16 MB of total data in the pareto flows.
-
-\begin{figure}[h]
-  \begin{centering}
-    \includegraphics{ack_plot}
-    \caption{The cumulative number of bytes ACKed at the source, taken every 10 seconds.}
-    \label{fig:ack_plot}
-  \end{centering}
-\end{figure}
+  \section{Delayed Acknowledgements}
+    \paragraph{}
+      All DelACK timeouts were measured to be 50ms as specified.
+      There are 10905 DelACK timeouts, and 432445 immediate ACKs triggered by data packets.
+      The TCP packet to ACK ratio is still 2.
 
 \end{document}
