@@ -34,11 +34,21 @@ Dividing this by $S$ gives us an average rate of 4062 B/s, or about 0.03 Mbps.
 \section{Elephant Prediction}
 
 \paragraph{}
-Given the bandwidth taken up by the Pareto and Exponential flows, the Elephants are left with $10 - r_{exp} - r_{pareto} = 9.54$ Mbps of bandwidth through the central link.
-Given that each Elephant must transmit a 400MB file, the Elephant is expected to finish at about 970s on average, given one-third of the remaining bandwidth.
+The measured Elephant finish times were 704s, 885s, and 1441s.
 
 \paragraph{}
-The measured Elephant finish times were 704s, 885s, and 1441s. This is in keeping with the expected average finish time.
+Given the bandwidth taken up by the Pareto and Exponential flows, the Elephants are left with $10 - r_{exp} - r_{pareto} = 9.5$ Mbps of bandwidth through the central link.
+As shown in figure \ref{fig:elephant_bw}, the total Elephant flow bandwidth usage stays at around 9 Mbps until the second elephant finishes at 885s.
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics{elephant_bw}
+    \caption{The bandwidth utilization of each elephant, as well as the total bandwidth utilization of all elephants.}
+    \label{fig:elephant_bw}
+  \end{center}
+\end{figure}
+
+\paragraph{}
+
 
 \section{Delayed Acknowledgements}
 \paragraph{}
@@ -55,14 +65,10 @@ Furthermore, the total number of bytes ACKed at the conclusion of the trace is 1
 
 \begin{figure}[h]
   \begin{centering}
-    \input{ack_plot}
-    \caption{Plot of the number of bytes ACKed at the source, taken every 10 seconds.}
+    \includegraphics{ack_plot}
+    \caption{The cumulative number of bytes ACKed at the source, taken every 10 seconds.}
     \label{fig:ack_plot}
   \end{centering}
 \end{figure}
-
-\begin{center}
-  \includegraphics{elephant_bw.eps}
-\end{center}
 
 \end{document}
