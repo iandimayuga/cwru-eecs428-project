@@ -11,8 +11,8 @@ set nam "false"
 
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
-Agent/TCP/Sack1 set window_ 668
-Agent/TCP/Sack1 set maxcwnd_ 668
+Agent/TCP/Sack1 set window_ 256
+Agent/TCP/Sack1 set maxcwnd_ 256 
 Agent/TCP/Sack1 set windowInitOption_ 1 
 Agent/TCP/Sack1 set windowInit_ 2 
 Agent/TCP/Sack1 set packetSize_ 1460B
@@ -51,7 +51,7 @@ proc finish {} {
 
 
 Class Elephant
-Elephant instproc init {isSource name} {
+Elephant instproc init {isSource name arena} {
   global ns
   #initialize node
   $self instvar m_node
@@ -67,6 +67,11 @@ Elephant instproc init {isSource name} {
   if {$isSource} {
     set m_agent [new Agent/TCP/Sack1]
     $m_agent set class_ 2
+    if { $arena == 2} {
+      puts "special guy"
+      $m_agent set window_ 668
+      $m_agent set maxcwnd_ 668
+    }
 
     set m_ftp [new Application/FTP]
     $m_ftp attach-agent $m_agent
@@ -186,7 +191,7 @@ Region instproc init {num isWest arena} {
   set m_router [$ns node]
   puts "[$m_router id] is a router"
 
-  set m_elephant [new Elephant $isWest "Elephant $arena"]
+  set m_elephant [new Elephant $isWest "Elephant $arena" $arena]
   $ns duplex-link [$m_elephant set m_node] $m_router 1G 1ms DropTail
 
   for {set i 0} {$i < $num} {incr i} {

@@ -1,6 +1,6 @@
 # Ian Dimayuga (icd3)
 
-all: exp_on_off.out pareto_on_off.out total_pareto_exp.out packet_size.out delack.out delack_count.out endtime.out ack_plot.dat
+all: exp_on_off.out pareto_on_off.out total_pareto_exp.out packet_size.out delack.out delack_count.out endtime.out ack_plot.dat elephant_bw.dat
 
 trace.tr: sim.tcl
 	@echo "Running Simulation..."
