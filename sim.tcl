@@ -11,8 +11,8 @@ set nam "false"
 
 # Configure Defaults
 Agent/TCP/Sack1 set tcpTick_ 0.01 
-Agent/TCP/Sack1 set window_ 256
-Agent/TCP/Sack1 set maxcwnd_ 256 
+Agent/TCP/Sack1 set window_ 668
+Agent/TCP/Sack1 set maxcwnd_ 668
 Agent/TCP/Sack1 set windowInitOption_ 1 
 Agent/TCP/Sack1 set windowInit_ 2 
 Agent/TCP/Sack1 set packetSize_ 1460B
