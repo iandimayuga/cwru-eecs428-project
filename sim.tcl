@@ -67,7 +67,7 @@ Elephant instproc init {isSource name arena} {
   if {$isSource} {
     set m_agent [new Agent/TCP/Sack1]
     $m_agent set class_ 2
-    if { $arena == 2} {
+    if { $arena == 3} {
       puts "special guy"
       $m_agent set window_ 668
       $m_agent set maxcwnd_ 668
