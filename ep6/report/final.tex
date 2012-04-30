@@ -58,7 +58,7 @@
 
     \paragraph{}
       As shown in figure \ref{fig:elephant_bw}, the total Elephant flow bandwidth usage stays at around 9 Mbps until the second elephant finishes at 885s.
-      However, it does not remain at full utilization after this time.
+      However, the third elephant does not take full utilization after this time.
       This is also indicated by the change in slope in \ref{fig:ack_plot}.
 
     \begin{figure}[h]
@@ -69,7 +69,46 @@
       \end{center}
     \end{figure}
 
-    \subsection{}
+    \subsection{Latency-Based Throughput Calculation}
+      \paragraph{}
+        We suspect that the third elephant's sub-optimal link utilization is due to its high latency.
+        The maximum throughput $r$ can be expressed as a function of the advertised window and the latency:
+        \begin{center}
+          $r = \dfrac{window}{RTT}$
+        \end{center}
+        The advertised window is $256 pkts * 1500 B/pkt$.
+        Plugging this in yields
+        \begin{center}
+          $r = \dfrac{256 * 1500 bytes}{844 ms} = 3639 kbps$.
+        \end{center}
+        Since the latency is an underestimate given processing times and queuing delay, this supports the measured 3300 kbps that the last elephant achieves when transferring alone.
 
+    \subsection{Improvement}
+      \paragraph{}
+        To determine the optimal advertised window for this elephant, we use the inverse of the previous equation, plugging in the ideal 9.5 Mbps as the rate.
+        Solving $9.5 Mbps = \dfrac{window * 1500 bytes}{844 ms}$ for the window, we get an advertised window of 668 packets.
+        Rerunning the simulation where the third elephant's advertised window is 668 packets shows a marked improvement in behavior despite the high latency.
+        The following plots show the cumulative bytes ACKed and the bandwidth utilization of elephants after this improvement is made for the third elephant.
+
+      \begin{figure}[h]
+        \begin{center}
+          \includegraphics{elephant_bw_new}
+          \caption{The bandwidth utilization of each elephant, as well as the total bandwidth utilization of all elephants.}
+          \label{fig:elephant_bw_new}
+        \end{center}
+      \end{figure}
+
+      \begin{figure}[h]
+        \begin{centering}
+          \includegraphics{ack_plot_new}
+          \caption{The cumulative number of bytes ACKed at the source, taken every 10 seconds.}
+          \label{fig:ack_plot_new}
+        \end{centering}
+      \end{figure}
+
+      \paragraph{}
+        As indicated in Figure \ref{fig:elephant_bw_new}, the third elephant experiences a ramp-up when left alone, and finishes earlier than before.
+        The new elephant end times are 700, 875, and 1283 seconds, an improvement upon the previous 704, 885, and 1441 seconds.
+        Figure \ref{fig:ack_plot_new} also shows the improvement as the slope of ACK evolution curves upward to reach nearly its previous slope after the second elephant finishes.
 
 \end{document}
